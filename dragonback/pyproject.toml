@@ -1,0 +1,46 @@
+[tool.poetry]
+name = "dragonback"
+version = "0.1.0"
+description = ""
+authors = ["Kinder, Sytenskikh"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Django = "^3.2"
+psycopg2 = "^2.9.3"
+djangorestframework = "^3.13.1"
+Markdown = "^3.3.6"
+django-filter = "^21.1"
+drf-yasg = "^1.20.0"
+django-silk = "^4.3.0"
+django-simple-history = "^3.0.0"
+gunicorn = "^20.1.0"
+uvicorn = "^0.17.6"
+numpy = "^1.22.3"
+cityhash = "^0.4.1"
+django-json-widget = "^1.1.1"
+pytest = "^7.1.1"
+factory-boy = "^3.2.1"
+pytest-django = "^4.5.2"
+django-jsoneditor = "^0.2.2"
+redis = "^4.2.2"
+django-redis = "^5.2.0"
+parameterized = "^0.8.1"
+Pygments = "^2.12.0"
+django-admin-confirm = "^0.2.5"
+django-jazzmin = "^2.5.0"
+django-import-export = "^2.8.0"
+kafka-python = "^2.0.2"
+django-cors-headers = "^3.13.0"
+django-cprofile-middleware = "^1.0.5"
+django-guardian = "^2.4.0"
+djoser = "^2.1.0"
+deepdiff = "^6.2.3"
+drf-writable-nested = "^0.7.0"
+pillow = "^9.4.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

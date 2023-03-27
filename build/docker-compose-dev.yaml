@@ -1,0 +1,60 @@
+version: "3.9"
+   
+services:
+  db:
+    container_name: dragon-db-dev
+    image: postgres:14
+    volumes:
+      - dragon-postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  
+  redis:
+    container_name: dragon-redis
+    image: redis
+
+  backend:
+    container_name: dragon-backend-dev
+    platform: linux/x86-64
+    build:
+      context: ../dragonback
+      dockerfile: ../dragonback/Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ../dragonback:/dragonback
+    ports:
+      - "8000:8000"
+    environment:
+      - WB_STAND=DEV
+#      - WB_POSTGRES_NAME=postgres
+#      - WB_POSTGRES_USER=postgres
+#      - WB_POSTGRES_PASSWORD=postgres
+#      - WB_POSTGRES_HOST=db
+#      - WB_POSTGRES_PORT=5432
+#      - WB_ALLOWED_HOSTS='*'
+#      - WB_REDIS_URL=redis:6379/1
+#      - WB_CACHE_TTL=600
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    container_name: dragon-frontend-dev
+    platform: linux/x86-64
+    build:
+      context: ../dragonsnet
+      dockerfile: ../dragonsnet/Dockerfile
+    volumes:
+      - ../dragonsnet/public:/dragonsnet/public
+      - ../dragonsnet/src:/dragonsnet/src
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_WB_STAND=DEV
+
+volumes:
+  dragon-postgres-data:
